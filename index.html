@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title id="page-meta-title">حُجرية بريس | Hujariya Press</title>
+  <meta name="description" id="page-meta-desc" content="حُجرية بريس — منصة إخبارية وتحليلية شاملة تندرج تحت مظلة مؤسسة RAWI-YE.COM الإعلامية الرقمية.">
+  <meta name="theme-color" content="#b80d38" id="page-theme-color">
+
+  <!-- إعدادات تثبيت تطبيق الويب (PWA) والأيقونات الديناميكية من الإعدادات -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="حُجرية بريس">
+  <link rel="icon" id="dynamic-favicon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2216%22 fill=%22%23b80d38%22/><text x=%2250%%22 y=%2258%%22 font-size=%2264%22 fill=%22%23ffffff%22 font-family=%22Almarai,sans-serif%22 font-weight=%22800%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22>ح</text></svg>">
+  <link rel="apple-touch-icon" id="dynamic-apple-icon" href="">
+
+  <!-- وسوم المشاركة الذكية (Open Graph & Twitter Cards) -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="حُجرية بريس | Hujariya Press">
+  <meta property="og:title" id="og-meta-title" content="حُجرية بريس | Hujariya Press">
+  <meta property="og:description" id="og-meta-desc" content="منصة إخبارية وتحليلية شاملة تندرج تحت مظلة مؤسسة RAWI-YE.COM الإعلامية الرقمية.">
+  <meta property="og:image" id="og-meta-image" content="">
+  <meta property="og:url" id="og-meta-url" content="">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- الخطوط الإخبارية الهندسية المطابقة لطابع الجزيرة (Almarai & Alexandria) + أيقونات Google Material -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700;800;900&family=Almarai:wght@300;400;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@22,500,0,0" rel="stylesheet">
+
+  <!-- ملف المظهر الحديث بطابع الجزيرة والهوية القرمزية -->
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+  <!-- =====================================================================
+       1. الشريط العلوي المزدوج والمدمج (الطقس الإقليمي + مؤشرات الأسواق العالمية)
+       يتحرك تلقائياً بنعومة ويعطي روح غرفة الأخبار الحية
+       ===================================================================== -->
+  <div class="aj-top-live- utility-bars">
+    <!-- (أ) شريط الطقس المباشر -->
+    <div class="weather-top-strip" aria-label="حالة الطقس في اليمن والمملكة">
+      <div class="pub-container weather-strip-inner">
+        <div class="weather-strip-badge">
+          <span class="material-symbols-rounded" translate="no">partly_cloudy_day</span>
+          <span>الطقس</span>
+        </div>
+        <div class="ticker-viewport">
+          <div id="regional-weather-track" class="continuous-ticker-track weather-speed">
+            <span>صنعاء <strong dir="ltr">24°C</strong></span><span class="t-sep">•</span>
+            <span>عدن <strong dir="ltr">31°C</strong></span><span class="t-sep">•</span>
+            <span>تعز <strong dir="ltr">26°C</strong></span><span class="t-sep">•</span>
+            <span>الحجرية (التربة) <strong dir="ltr">23°C</strong></span><span class="t-sep">•</span>
+            <span>المكلا <strong dir="ltr">29°C</strong></span><span class="t-sep">•</span>
+            <span>مأرب <strong dir="ltr">28°C</strong></span><span class="t-sep">•</span>
+            <span>الرياض <strong dir="ltr">30°C</strong></span><span class="t-sep">•</span>
+            <span>مكة المكرمة <strong dir="ltr">33°C</strong></span><span class="t-sep">•</span>
+            <span>جدة <strong dir="ltr">31°C</strong></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- (ب) شريط مؤشرات الأسواق العالمية والعملات والطاقة -->
+    <div class="markets-strip-bar" aria-label="مؤشرات الأسواق العالمية والعملات">
+      <div class="pub-container markets-strip-inner">
+        <div class="markets-strip-badge">
+          <span class="material-symbols-rounded" translate="no">monitoring</span>
+          <span>الأسواق</span>
+        </div>
+        <div class="ticker-viewport">
+          <div id="global-markets-track" class="continuous-ticker-track markets-speed">
+            <span class="m-item">الذهب <strong dir="ltr">$2,748.20</strong> <em class="m-up">▲ +0.4%</em></span>
+            <span class="t-sep">|</span>
+            <span class="m-item">نفط برنت <strong dir="ltr">$75.10</strong> <em class="m-up">▲ +0.8%</em></span>
+            <span class="t-sep">|</span>
+            <span class="m-item">تاسي السعودي <strong dir="ltr">12,068</strong> <em class="m-up">▲ +0.3%</em></span>
+            <span class="t-sep">|</span>
+            <span class="m-item">داو جونز <strong dir="ltr">42,415</strong> <em class="m-up">▲ +0.2%</em></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =====================================================================
+       2. الهيدر الأبيض النقي بطابع الجزيرة مع اللمسات القرمزية الفخمة
+       ===================================================================== -->
+  <header class="aj-clean-header" id="site-header-banner">
+    <div class="pub-container header-main-row">
+
+      <!-- يمين الهيدر: زر القائمة الجانبية الشاملة بأيقونة قرمزية -->
+      <button type="button" id="open-master-sidebar-btn" class="header-menu-btn" aria-label="فتح القائمة الجانبية">
+        <span class="material-symbols-rounded" translate="no">menu</span>
+        <span class="menu-btn-label">الأقسام والقائمة</span>
+      </button>
+
+      <!-- وسط الهيدر: الشعار المفرغ في حاضنة قرمزية فخمة أو الاسم النصي -->
+      <a href="#home" id="brand-home-link" class="header-brand-slot" aria-label="حُجرية بريس - الصفحة الرئيسية">
+        <span id="header-logo-capsule" class="header-logo-capsule hidden">
+          <img id="site-logo-img" src="" alt="حُجرية بريس" class="header-logo-img hidden">
+        </span>
+        <span id="site-text-brand" class="header-brand-text">حُجرية بريس</span>
+      </a>
+
+      <!-- يسار الهيدر: اختصار النبض السريع + الفيديوهات القصيرة -->
+      <div class="header-quick-shortcuts">
+        <button type="button" id="header-pulse-shortcut" class="header-shortcut-pill" title="الأخبار السريعة (النبض)">
+          <span class="material-symbols-rounded" translate="no">bolt</span>
+          <span class="shortcut-text">النبض</span>
+        </button>
+        <button type="button" id="header-shorts-shortcut" class="header-shortcut-pill" title="الفيديوهات القصيرة والمرئيات">
+          <span class="material-symbols-rounded" translate="no">smart_display</span>
+          <span class="shortcut-text">المرئيات</span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- =====================================================================
+       3. شريط الأقسام اللزج بطابع الجزيرة (خطوط قرمزية نشطة وتمرير سلس)
+       ===================================================================== -->
+  <nav class="aj-categories-bar" aria-label="أقسام الموقع">
+    <div class="pub-container">
+      <div id="public-compasses-nav" class="categories-scroll-row">
+        <button type="button" class="cat-tab-btn active" data-compass-filter="all">الرئيسية</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- شريط التصنيفات الفرعية (يظهر عند اختيار قسم معين) -->
+  <div id="subcategories-bar-wrap" class="subcategories-bar-wrap hidden">
+    <div class="pub-container">
+      <div id="public-subcategories-list" class="subcategories-scroll-row"></div>
+    </div>
+  </div>
+
+  <!-- =====================================================================
+       4. شريط الأخبار العاجلة القرمزي المتحرك تلقائياً (تحت شريط الأقسام مباشرة)
+       ===================================================================== -->
+  <section id="breaking-news-bar" class="tv-breaking-bar hidden" aria-label="أخبار عاجلة">
+    <div class="pub-container tv-breaking-inner">
+      <div class="tv-breaking-badge">
+        <span class="pulse-dot"></span>
+        <strong>عاجل</strong>
+      </div>
+      <div class="ticker-viewport">
+        <div id="breaking-ticker-items" class="continuous-ticker-track breaking-speed"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       5. القائمة الجانبية الشاملة (تفتح صفحات الأقسام مباشرة بضغطة واحدة)
+       ===================================================================== -->
+  <div id="master-sidebar-backdrop" class="sidebar-backdrop hidden"></div>
+  <aside id="master-sidebar-drawer" class="master-sidebar-drawer hidden" aria-label="القائمة الجانبية الشاملة">
+    <div class="sidebar-drawer-header">
+      <div class="sidebar-header-brand">
+        <span id="sidebar-logo-capsule" class="sidebar-logo-capsule hidden">
+          <img id="sidebar-logo-img" src="" alt="" class="sidebar-logo-img hidden">
+        </span>
+        <strong id="sidebar-brand-title" class="sidebar-brand-title">حُجرية بريس</strong>
+      </div>
+      <button type="button" id="close-master-sidebar-btn" class="sidebar-close-btn" aria-label="إغلاق القائمة">
+        <span class="material-symbols-rounded" translate="no">close</span>
+      </button>
+    </div>
+
+    <div class="sidebar-drawer-body">
+      <div class="sidebar-section-block">
+        <button type="button" id="sidebar-home-btn" class="sidebar-page-link active">
+          <span class="material-symbols-rounded" translate="no">home</span>
+          <span>الصفحة الرئيسية</span>
+        </button>
+        <button type="button" id="sidebar-pulse-page-btn" class="sidebar-page-link">
+          <span class="material-symbols-rounded" translate="no">bolt</span>
+          <span>صفحة الأخبار السريعة (النبض)</span>
+        </button>
+        <button type="button" id="sidebar-shorts-page-btn" class="sidebar-page-link">
+          <span class="material-symbols-rounded" translate="no">smart_display</span>
+          <span>الفيديوهات القصيرة والمرئيات</span>
+        </button>
+      </div>
+
+      <!-- أقسام الموقع المباشرة -->
+      <div class="sidebar-section-block">
+        <span class="sidebar-block-title">أقسام حُجرية بريس</span>
+        <div id="sidebar-categories-direct-list" class="sidebar-direct-grid"></div>
+      </div>
+
+      <!-- زاوية الكُتّاب ومقالات الرأي -->
+      <div id="sidebar-writers-block" class="sidebar-section-block hidden">
+        <span class="sidebar-block-title">أقلام وكُتّاب المنصة</span>
+        <div id="sidebar-writers-list" class="sidebar-writers-list"></div>
+      </div>
+
+      <!-- الصفحات المؤسسية الثابتة -->
+      <div class="sidebar-section-block">
+        <span class="sidebar-block-title">عن المنصة والمواثيق</span>
+        <div class="sidebar-pages-list">
+          <button type="button" class="sidebar-page-link" data-open-page="about">
+            <span class="material-symbols-rounded" translate="no">info</span>
+            <span>من نحن والتوجيه الوطني</span>
+          </button>
+          <button type="button" class="sidebar-page-link" data-open-page="charter">
+            <span class="material-symbols-rounded" translate="no">gavel</span>
+            <span>ميثاق الشرف الصحفي</span>
+          </button>
+          <button type="button" id="sidebar-privacy-btn" class="sidebar-page-link" data-open-page="privacy">
+            <span class="material-symbols-rounded" translate="no">verified_user</span>
+            <span>سياسة الخصوصية</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- منصات التواصل الاجتماعي -->
+      <div id="sidebar-socials-wrap" class="sidebar-section-block hidden">
+        <span class="sidebar-block-title">تابعنا على منصات التواصل</span>
+        <div id="sidebar-social-links" class="sidebar-socials-grid"></div>
+      </div>
+    </div>
+
+    <div class="sidebar-drawer-footer">
+      <span>مؤسسة <strong>RAWI-YE.COM</strong> الإعلامية</span>
+      <span id="sidebar-domain-label" dir="ltr">hujariyapress.rawi-ye.com</span>
+    </div>
+  </aside>
+
+  <!-- =====================================================================
+       6. مساحة المحتوى الإخباري الرئيسية (أسلوب الجزيرة الحديث)
+       ===================================================================== -->
+  <main class="pub-container main-workspace">
+
+    <!-- المساحة الإعلانية العلوية -->
+    <div id="ad-slot-top" class="ad-slot-container hidden"></div>
+
+    <!-- شريط عنوان القسم أو البحث المفتوح حالياً -->
+    <div id="active-filter-banner" class="active-filter-banner hidden">
+      <div class="filter-banner-info">
+        <span class="aj-crimson-pillar"></span>
+        <strong id="active-filter-title">نتائج العرض</strong>
+      </div>
+      <button type="button" id="reset-all-filters-btn" class="btn-clean-reset">
+        <span class="material-symbols-rounded" translate="no">arrow_forward</span>
+        <span>العودة للرئيسية</span>
+      </button>
+    </div>
+
+    <!-- =================================================================
+         (أ) واجهة الصفحة الرئيسية وصفحات الأقسام
+         ================================================================= -->
+    <div id="view-home" class="app-view">
+
+      <!-- شبكة التغطية الرئيسية غير المتماثلة بطابع الجزيرة (Asymmetric Hero Grid) -->
+      <section id="hero-featured-section" class="hero-featured-section">
+        <div id="hero-featured-box" class="aj-hero-slot">
+          <div class="skeleton-box hero-skeleton">جاري تحميل التغطية الرئيسية...</div>
+        </div>
+      </section>
+
+      <!-- شريط موجز الأخبار السريعة (النبض) بلمسة قرمزية -->
+      <section id="quick-pulse-strip-section" class="quick-pulse-strip-section" aria-label="موجز الأخبار السريعة">
+        <div class="pulse-strip-header">
+          <div class="pulse-header-right">
+            <span class="material-symbols-rounded pulse-icon" translate="no">bolt</span>
+            <h2>موجز الأخبار السريعة</h2>
+          </div>
+          <button type="button" id="view-all-pulse-btn" class="pulse-more-btn">عرض الكل</button>
+        </div>
+        <div id="quick-pulse-feed" class="pulse-horizontal-cards">
+          <div class="empty-state-msg">جاري تحميل الموجز...</div>
+        </div>
+      </section>
+
+      <!-- شريط الفيديوهات القصيرة والمرئيات (9:16) -->
+      <section id="shorts-reels-section" class="shorts-reels-section hidden" aria-label="الفيديوهات القصيرة والمرئيات">
+        <div class="aj-block-header">
+          <span class="aj-crimson-pillar"></span>
+          <span class="material-symbols-rounded" style="color:var(--brand-red);font-size:22px;" translate="no">smart_display</span>
+          <h2>الفيديوهات القصيرة والمرئيات</h2>
+          <button type="button" id="view-all-shorts-btn" class="pulse-more-btn" style="margin-right:auto;">كل المرئيات</button>
+        </div>
+        <div id="shorts-horizontal-list" class="shorts-horizontal-row"></div>
+      </section>
+
+      <!-- المساحة الإعلانية الوسطى -->
+      <div id="ad-slot-middle" class="ad-slot-container hidden"></div>
+
+      <!-- شبكة الأخبار والتقارير والتحليلات -->
+      <section class="aj-news-section" aria-label="أحدث الأخبار والتقارير">
+        <div class="aj-block-header">
+          <span class="aj-crimson-pillar"></span>
+          <h2 id="feed-section-heading">أحدث الأخبار والتقارير</h2>
+          <span id="feed-posts-counter" class="feed-count-text"></span>
+        </div>
+
+        <div id="public-posts-grid" class="aj-news-grid">
+          <div class="skeleton-box"></div>
+          <div class="skeleton-box"></div>
+          <div class="skeleton-box"></div>
+        </div>
+
+        <div id="load-more-wrap" class="load-more-wrap hidden">
+          <button type="button" id="load-more-posts-btn" class="btn-load-more">
+            <span>عرض المزيد من الأخبار</span>
+            <span class="material-symbols-rounded" translate="no">expand_more</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- زاوية كُتّاب وأقلام «حُجرية بريس» (طابع آراء الجزيرة) -->
+      <section id="writers-strip-section" class="aj-writers-section hidden" aria-label="أقلام وكُتّاب حُجرية بريس">
+        <div class="aj-block-header">
+          <span class="aj-crimson-pillar"></span>
+          <h2>الآراء وأقلام حُجرية بريس</h2>
+        </div>
+        <div id="writers-horizontal-list" class="writers-clean-row"></div>
+      </section>
+
+    </div>
+
+    <!-- =================================================================
+         (ب) واجهة قراءة الخبر الكامل (مع الصور المدمجة بين الفقرات)
+         ================================================================= -->
+    <article id="view-article" class="app-view hidden">
+      <div class="article-top-nav">
+        <button type="button" id="back-from-article-btn" class="btn-back-clean">
+          <span class="material-symbols-rounded" translate="no">arrow_forward</span>
+          <span>العودة للأخبار</span>
+        </button>
+
+        <!-- شريط تصنيفات المقال الكامل داخل صفحة القراءة -->
+        <div id="article-categories-badges" class="horizontal-tags-scroll"></div>
+      </div>
+
+      <div class="aj-article-sheet">
+        <h1 id="reader-article-title" class="article-main-headline"></h1>
+
+        <!-- الملخص الإخباري (الزبدة) -->
+        <p id="reader-article-summary" class="article-lead-summary hidden"></p>
+
+        <!-- شريط معلومات الكاتب والوقت + زر المشاركة الموحد -->
+        <div class="article-byline-bar">
+          <div id="reader-author-box" class="byline-author-info" role="button" tabindex="0">
+            <img id="reader-author-avatar" src="" alt="" class="byline-avatar">
+            <div class="byline-text">
+              <div class="byline-name-row">
+                <strong id="reader-author-name"></strong>
+                <span id="reader-author-verified" class="material-symbols-rounded verified-icon hidden" translate="no">verified</span>
+              </div>
+              <time id="reader-publish-date" class="byline-time"></time>
+            </div>
+          </div>
+
+          <button type="button" id="unified-share-btn" class="btn-unified-share" title="مشاركة الخبر مع الصورة والملخص والرابط">
+            <span class="material-symbols-rounded" translate="no">share</span>
+            <span id="unified-share-label">مشاركة</span>
+          </button>
+        </div>
+
+        <!-- مشغل الفيديو الذكي (عمودي 9:16 أو عريض 16:9) -->
+        <div id="reader-video-box" class="article-video-embed hidden"></div>
+
+        <!-- صورة المقال البارزة الرئيسية -->
+        <figure id="reader-media-figure" class="article-main-figure"></figure>
+
+        <!-- النص الكامل للخبر (مهيأ للصور المتعددة بين الفقرات + الروابط والمصادر) -->
+        <div id="reader-article-content" class="article-body-prose"></div>
+
+        <!-- شريط مشاركة سفلي موحد -->
+        <div class="article-bottom-share">
+          <span>شارك هذا التقرير مع الآخرين:</span>
+          <button type="button" id="unified-share-bottom-btn" class="btn-unified-share">
+            <span class="material-symbols-rounded" translate="no">share</span>
+            <span id="unified-share-bottom-label">مشاركة التقرير</span>
+          </button>
+        </div>
+
+        <!-- شريط الوسوم (بحد أقصى 3 وسوم) -->
+        <div id="reader-tags-box" class="horizontal-tags-scroll article-tags-margin hidden"></div>
+      </div>
+
+      <!-- أخبار وتقارير ذات صلة -->
+      <section class="aj-news-section">
+        <div class="aj-block-header">
+          <span class="aj-crimson-pillar"></span>
+          <h2>أخبار وتقارير ذات صلة</h2>
+        </div>
+        <div id="related-posts-grid" class="aj-news-grid"></div>
+      </section>
+    </article>
+
+    <!-- =================================================================
+         (ج) واجهة صفحة الكاتب وأرشيف مقالاته
+         ================================================================= -->
+    <section id="view-author" class="app-view hidden">
+      <div class="article-top-nav">
+        <button type="button" id="back-from-author-btn" class="btn-back-clean">
+          <span class="material-symbols-rounded" translate="no">arrow_forward</span>
+          <span>العودة للرئيسية</span>
+        </button>
+      </div>
+
+      <div class="author-clean-header">
+        <img id="author-view-avatar" src="" alt="" class="author-clean-avatar">
+        <div class="author-clean-meta">
+          <div class="author-clean-name-row">
+            <h1 id="author-view-name"></h1>
+            <span id="author-view-verified" class="material-symbols-rounded verified-icon hidden" translate="no">verified</span>
+          </div>
+          <span id="author-view-job" class="author-clean-role"></span>
+          <p id="author-view-bio" class="author-clean-bio"></p>
+        </div>
+      </div>
+
+      <div class="aj-block-header" style="margin-top: 24px;">
+        <span class="aj-crimson-pillar"></span>
+        <h2 id="author-articles-heading">مقالات الكاتب</h2>
+      </div>
+      <div id="author-posts-grid" class="aj-news-grid"></div>
+    </section>
+
+    <!-- =================================================================
+         (د) واجهة الصفحات المؤسسية الثابتة (من نحن، الميثاق، الخصوصية)
+         ================================================================= -->
+    <section id="view-static-page" class="app-view hidden">
+      <div class="article-top-nav">
+        <button type="button" id="back-from-static-btn" class="btn-back-clean">
+          <span class="material-symbols-rounded" translate="no">arrow_forward</span>
+          <span>العودة للرئيسية</span>
+        </button>
+      </div>
+
+      <div class="aj-article-sheet">
+        <h1 id="static-page-title" class="article-main-headline"></h1>
+        <div id="static-page-body" class="article-body-prose"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =====================================================================
+       7. شريط البحث الذكي العائم في الأسفل (Smart Floating Live Search Pill)
+       مفتوح دائماً ويبحث فورياً مع كتابة كل حرف بدون زر تأكيد
+       ===================================================================== -->
+  <div id="floating-smart-search-dock" class="floating-search-dock" role="search" aria-label="البحث الذكي الفوري">
+    <form id="public-search-form" class="floating-search-pill">
+      <span class="material-symbols-rounded floating-search-icon" translate="no">manage_search</span>
+      <input
+        type="search"
+        id="public-search-input"
+        placeholder="ابحث فورياً في الأخبار، التقارير، أو الكتّاب..."
+        aria-label="ابحث فورياً في الأخبار"
+        autocomplete="off"
+      >
+      <span id="floating-search-count" class="floating-search-count hidden">0</span>
+      <button type="button" id="clear-search-btn" class="clear-search-btn hidden" title="مسح البحث">
+        <span class="material-symbols-rounded" translate="no">close</span>
+      </button>
+    </form>
+  </div>
+
+  <!-- =====================================================================
+       8. عارض الصور المكبر (Lightbox) للصور المدمجة داخل المقالات
+       ===================================================================== -->
+  <div id="inline-image-lightbox" class="image-lightbox-modal hidden" role="dialog" aria-label="عرض الصورة بحجم كامل">
+    <button type="button" id="close-lightbox-btn" class="lightbox-close-btn" aria-label="إغلاق">
+      <span class="material-symbols-rounded" translate="no">close</span>
+    </button>
+    <div class="lightbox-content-wrap">
+      <img id="lightbox-full-img" src="" alt="">
+      <p id="lightbox-caption-text" class="lightbox-caption hidden"></p>
+    </div>
+  </div>
+
+  <!-- =====================================================================
+       9. التذييل المؤسسي الفخم (Footer)
+       ===================================================================== -->
+  <footer class="aj-clean-footer">
+    <div class="pub-container">
+      <div class="footer-top-row">
+        <div class="footer-brand-info">
+          <img id="footer-logo-img" src="" alt="حُجرية بريس" class="footer-logo-img hidden">
+          <strong id="footer-site-name" class="footer-title">حُجرية بريس</strong>
+          <p id="footer-site-desc" class="footer-desc">
+            منصة إخبارية وتحليلية شاملة تندرج تحت مظلة مؤسسة RAWI-YE.COM الإعلامية الرقمية.
+          </p>
+          <div id="footer-social-links" class="footer-socials-row"></div>
+        </div>
+
+        <div class="footer-quick-links">
+          <button type="button" class="footer-link-btn" data-open-page="about">من نحن</button>
+          <button type="button" class="footer-link-btn" data-open-page="charter">ميثاق الشرف</button>
+          <button type="button" class="footer-link-btn" data-open-page="privacy">سياسة الخصوصية</button>
+        </div>
+      </div>
+
+      <div class="footer-bottom-row">
+        <span>© جميع الحقوق محفوظة لـ <strong id="copyright-site-name">حُجرية بريس</strong> — مؤسسة <strong>RAWI-YE.COM</strong></span>
+        <span id="footer-domain-label" dir="ltr">hujariyapress.rawi-ye.com</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- إشعار التفاعل السريع (Toast) -->
+  <div id="pub-toast" class="pub-toast hidden" role="status" aria-live="polite"></div>
+
+  <!-- المحرك البرمجي للموقع العام (حُجرية بريس) -->
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
