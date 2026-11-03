@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- الصفحة الرئيسية -->
+  <url>
+    <loc>https://www.hujariyapress.rawi-ye.com/</loc>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- لوحة أسعار الصرف الحية في اليمن (صنعاء وعدن) -->
+  <url>
+    <loc>https://www.hujariyapress.rawi-ye.com/?view=exchange</loc>
+    <changefreq>hourly</changefreq>
+    <priority>0.95</priority>
+  </url>
+
+  <!-- صفحة الأخبار السريعة والعاجلة (النبض) -->
+  <url>
+    <loc>https://www.hujariyapress.rawi-ye.com/?compass=pulse-only</loc>
+    <changefreq>always</changefreq>
+    <priority>0.90</priority>
+  </url>
+
+  <!-- صفحة الفيديوهات القصيرة والمرئيات -->
+  <url>
+    <loc>https://www.hujariyapress.rawi-ye.com/?compass=shorts-only</loc>
+    <changefreq>hourly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- الأقسام الإخبارية الرئيسية المعتمدة -->
+  <url>
+    <loc>https://www.hujariyapress.rawi-ye.com/?compass=yemen-politics</loc>
+    <changefreq>hourly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.hujariyapress.rawi-ye.com/?compass=saudi-politics</loc>
+    <changefreq>hourly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.hujariyapress.rawi-ye.com/?compass=regional-international</loc>
+    <changefreq>hourly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.hujariyapress.rawi-ye.com/?compass=economy-dev</loc>
+    <changefreq>hourly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.hujariyapress.rawi-ye.com/?compass=sports</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://www.hujariyapress.rawi-ye.com/?compass=health-science</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://www.hujariyapress.rawi-ye.com/?compass=tech-future</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://www.hujariyapress.rawi-ye.com/?compass=culture-thought</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://www.hujariyapress.rawi-ye.com/?compass=art-media</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.70</priority>
+  </url>
+
+  <!-- الصفحات المؤسسية الثابتة -->
+  <url>
+    <loc>https://www.hujariyapress.rawi-ye.com/?page=about</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.60</priority>
+  </url>
+  <url>
+    <loc>https://www.hujariyapress.rawi-ye.com/?page=charter</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.60</priority>
+  </url>
+  <url>
+    <loc>https://www.hujariyapress.rawi-ye.com/?page=privacy</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.50</priority>
+  </url>
+
+</urlset>
