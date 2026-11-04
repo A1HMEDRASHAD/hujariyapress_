@@ -1,13 +1,11 @@
 /* ==========================================================================
    حُجرية بريس (Hujariya Press) — التصميم الإخباري الحديث بأسلوب الجزيرة (Al Jazeera Style)
-   الهوية البصرية:
+   النسخة الصافية فائقة السرعة والمجهزة لمحركات البحث (SEO):
    - مساحات بيضاء نقية (#ffffff) + نصوص سوداء حادة (#0c0d0e)
    - الهوية القرمزية الفخمة (Crimson #b80d38) للأيقونات، الظلال، المؤثرات، وأشرطة العاجل
-   - خط الجزيرة الأصلي (إن وجد محلياً) أو بديله الهندسي المباشر (Almarai & Alexandria)
-   - شبكة عرض غير متماثلة (Asymmetric Hero Grid) + شريط بحث ذكي عائم في الأسفل
+   - انتقالات حركية ناعمة (Smooth Micro-Animations) وقفل تام ضد الانكماش الأفقي
    ========================================================================== */
 
-/* تضمين تلقائي لخط الجزيرة إذا كان مثبتاً على الجهاز مع انتقال سلس لخط المراعي والإسكندرية */
 @font-face {
   font-family: 'AlJazeeraCustom';
   src: local('Al-Jazeera-Arabic-Regular'), local('Al-Jazeera-Arabic'), local('Al Jazeera Arabic');
@@ -23,7 +21,6 @@
 }
 
 :root {
-  /* اللون القرمزي السيادي ومشتقاته للظلال والمؤثرات والأيقونات */
   --brand-red: #b80d38;
   --brand-red-dark: #8e0729;
   --brand-red-light: #e01a4f;
@@ -34,24 +31,19 @@
   --crimson-shadow-md: 0 10px 28px rgba(184, 13, 56, 0.13);
   --crimson-shadow-lg: 0 14px 36px rgba(184, 13, 56, 0.22);
 
-  /* المساحات البيضاء النقية بطابع الجزيرة */
   --bg-page: #ffffff;
   --bg-card: #ffffff;
   --bg-subtle: #f7f8fa;
   --bg-surface-alt: #f1f3f6;
 
-  /* نصوص سوداء حادة وعالية التباين */
   --text-main: #0c0d0e;
   --text-body: #26282c;
   --text-muted: #636770;
 
-  /* فواصل صحفية نحيفة */
   --border-light: #e6e8ec;
   --border-med: #cfd3da;
 
   --verified-blue: #0284c7;
-  --up-green: #16a34a;
-  --down-red: #dc2626;
 
   --font-editorial: 'AlJazeeraCustom', 'Almarai', 'Alexandria', sans-serif;
   --font-display: 'AlJazeeraCustom', 'Alexandria', 'Almarai', sans-serif;
@@ -84,7 +76,7 @@ body {
   overflow-x: hidden;
   overflow-x: clip;
   position: relative;
-  padding-bottom: 76px; /* مساحة مريحة لشريط البحث الذكي العائم في الأسفل */
+  padding-bottom: 76px;
 }
 
 h1, h2, h3, h4, strong {
@@ -96,7 +88,7 @@ img {
   display: block;
 }
 
-button, input {
+button, input, select {
   font-family: inherit;
 }
 
@@ -145,7 +137,8 @@ button:active {
   animation-iteration-count: infinite;
 }
 
-.weather-speed { animation-duration: 42s; }
+/* سرعة متزنة لشريط الطقس الموسع الذي يضم 28 مدينة */
+.weather-speed { animation-duration: 68s; }
 .markets-speed { animation-duration: 38s; }
 .breaking-speed { animation-duration: 28s; }
 
@@ -164,7 +157,7 @@ button:active {
   font-size: 0.72rem;
 }
 
-/* ==================== 1. أشرطة الطقس والأسواق المدمجة في الأعلى ==================== */
+/* ==================== 1. أشرطة الطقس الموسع والأسواق المدمجة في الأعلى ==================== */
 .weather-top-strip {
   background-color: #0e1014;
   color: #e4e6eb;
@@ -195,7 +188,8 @@ button:active {
   border-left: 1px solid rgba(255, 255, 255, 0.14);
 }
 
-.weather-strip-badge .material-symbols-rounded {
+.weather-strip-badge .material-symbols-rounded,
+.markets-strip-badge .material-symbols-rounded {
   font-size: 15px;
   color: var(--brand-red-light);
 }
@@ -208,11 +202,6 @@ button:active {
   border-bottom: 1px solid #252830;
   overflow: hidden;
   width: 100%;
-}
-
-.markets-strip-badge .material-symbols-rounded {
-  font-size: 15px;
-  color: var(--brand-red-light);
 }
 
 .m-item {
@@ -261,7 +250,6 @@ button:active {
   min-height: 48px;
 }
 
-/* زر القائمة الجانبية بأيقونة قرمزية وظل ناعم */
 .header-menu-btn {
   display: inline-flex;
   align-items: center;
@@ -289,11 +277,6 @@ button:active {
   box-shadow: var(--crimson-shadow-sm);
 }
 
-.header-menu-btn:hover .material-symbols-rounded {
-  transform: scale(1.08);
-}
-
-/* الشعار في المنتصف: حاضنة قرمزية أنيقة تضمن بروز الشعار الأبيض المفرغ فوق الهيدر الأبيض */
 .header-brand-slot {
   display: inline-flex;
   align-items: center;
@@ -343,7 +326,6 @@ button:active {
   vertical-align: middle;
 }
 
-/* أزرار الاختصارات السريعة يسار الهيدر */
 .header-quick-shortcuts {
   display: flex;
   align-items: center;
@@ -370,9 +352,13 @@ button:active {
 }
 
 .header-shortcut-pill:hover {
-  background-color: var(--crimson-soft-bg);
+  background-color: var(--brand-red);
   border-color: var(--brand-red);
-  color: var(--brand-red);
+  color: #ffffff;
+}
+
+.header-shortcut-pill:hover .material-symbols-rounded {
+  color: #ffffff;
 }
 
 /* ==================== 3. شريط الأقسام اللزج بطابع الجزيرة ==================== */
@@ -419,7 +405,6 @@ button:active {
   background-color: var(--crimson-soft-bg);
 }
 
-/* شريط التصنيفات الفرعية */
 .subcategories-bar-wrap {
   background-color: var(--bg-subtle);
   border-bottom: 1px solid var(--border-light);
@@ -451,11 +436,6 @@ button:active {
   font-weight: 800;
   white-space: nowrap;
   flex-shrink: 0;
-}
-
-.subcat-chip:hover {
-  border-color: var(--brand-red);
-  color: var(--brand-red);
 }
 
 .subcat-chip.active {
@@ -521,11 +501,7 @@ button:active {
   gap: 6px;
 }
 
-.tv-ticker-item:hover {
-  text-decoration: underline;
-}
-
-/* ==================== 5. القائمة الجانبية الشاملة بطابع أبيض وقرمزي ==================== */
+/* ==================== 5. القائمة الجانبية الشاملة ==================== */
 .sidebar-backdrop {
   position: fixed;
   inset: 0;
@@ -737,7 +713,7 @@ button:active {
   justify-content: space-between;
 }
 
-/* ==================== 6. شارات التصنيفات والوسائط (أول تصنيفين فقط في البطاقات) ==================== */
+/* ==================== 6. شارات التصنيفات والوسائط ==================== */
 .card-categories-row {
   display: flex;
   flex-wrap: wrap;
@@ -800,20 +776,6 @@ button:active {
   white-space: nowrap;
 }
 
-.card-video-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 3px;
-  padding: 2px 8px;
-  border-radius: 4px;
-  background-color: var(--brand-red);
-  color: #ffffff;
-  font-size: 0.7rem;
-  font-weight: 800;
-  white-space: nowrap;
-}
-
-/* شارة الفيديو السينمائية المدمجة فوق الصور بأسلوب الجزيرة */
 .media-floating-badge {
   position: absolute;
   bottom: 10px;
@@ -849,6 +811,12 @@ button:active {
   width: 100%;
   max-width: 100%;
   overflow-x: clip;
+  animation: fadeInView 0.22s ease-out;
+}
+
+@keyframes fadeInView {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .aj-block-header {
@@ -897,7 +865,6 @@ button:active {
   max-width: 100%;
 }
 
-/* تخطيط الجزيرة غير المتماثل: التغطية الكبرى يميناً + عمود أبرز الأخبار يساراً */
 .aj-asymmetric-hero-grid {
   display: grid;
   grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
@@ -983,7 +950,6 @@ button:active {
   overflow: hidden;
 }
 
-/* العمود الأيسر المرافق للخبر الرئيسي في شبكة الجزيرة */
 .aj-hero-side-stack {
   display: flex;
   flex-direction: column;
@@ -1046,7 +1012,6 @@ button:active {
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  transition: color 0.15s ease;
 }
 
 .aj-hero-side-item:hover .aj-side-title {
@@ -1167,10 +1132,6 @@ button:active {
   box-shadow: var(--crimson-shadow-sm);
 }
 
-.pulse-mini-card:hover .brief-item-title {
-  color: var(--brand-red);
-}
-
 .brief-item-time {
   font-size: 0.7rem;
   font-weight: 800;
@@ -1190,7 +1151,6 @@ button:active {
   overflow: hidden;
 }
 
-/* شريط الفيديوهات القصيرة (9:16) */
 .shorts-reels-section {
   margin-bottom: 28px;
   width: 100%;
@@ -1389,7 +1349,6 @@ button:active {
   -webkit-box-orient: vertical;
   overflow: hidden;
   overflow-wrap: break-word;
-  transition: color 0.18s ease;
 }
 
 .bbc-card-excerpt {
@@ -1404,7 +1363,7 @@ button:active {
   overflow-wrap: break-word;
 }
 
-/* ==================== 10. شريط البحث الذكي العائم في الأسفل (Floating Live Search) ==================== */
+/* ==================== 10. شريط البحث الذكي العائم في الأسفل ==================== */
 .floating-search-dock {
   position: fixed;
   bottom: 16px;
@@ -1443,12 +1402,6 @@ button:active {
   color: var(--brand-red);
   font-size: 22px;
   flex-shrink: 0;
-  animation: subtlePulseCrimson 3s infinite ease-in-out;
-}
-
-@keyframes subtlePulseCrimson {
-  0%, 100% { transform: scale(1); opacity: 0.95; }
-  50% { transform: scale(1.08); opacity: 1; }
 }
 
 .floating-search-pill input {
@@ -1461,11 +1414,6 @@ button:active {
   font-size: 0.86rem;
   font-weight: 700;
   outline: none;
-}
-
-.floating-search-pill input::placeholder {
-  color: var(--text-muted);
-  font-weight: 600;
 }
 
 .floating-search-count {
@@ -1490,11 +1438,6 @@ button:active {
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-}
-
-.clear-search-btn:hover {
-  background-color: var(--brand-red);
-  color: #ffffff;
 }
 
 /* ==================== 11. قارئ المقال + الصور المتعددة المدمجة بين الفقرات ==================== */
@@ -1682,10 +1625,6 @@ button:active {
   background-color: var(--brand-red-dark);
 }
 
-.btn-unified-share .material-symbols-rounded {
-  font-size: 18px;
-}
-
 .article-main-figure {
   margin-bottom: 20px;
   background-color: transparent;
@@ -1744,7 +1683,6 @@ button:active {
   border: 0;
 }
 
-/* نص المقال والصور المتعددة المدمجة بين الفقرات */
 .article-body-prose {
   font-size: 1.08rem;
   line-height: 1.95;
@@ -1873,17 +1811,6 @@ button:active {
   white-space: nowrap;
 }
 
-.tag-chip:hover {
-  border-color: var(--brand-red);
-  color: var(--brand-red);
-}
-
-.inline-hashtag {
-  color: var(--brand-red);
-  font-weight: 800;
-  cursor: pointer;
-}
-
 /* عارض الصور المكبر (Lightbox) */
 .image-lightbox-modal {
   position: fixed;
@@ -1976,7 +1903,6 @@ button:active {
   margin-top: 4px;
 }
 
-/* عناصر التصفية والإعلانات */
 .active-filter-banner {
   display: flex;
   align-items: center;
@@ -2203,7 +2129,7 @@ button:active {
     padding: 16px;
   }
   .article-main-headline {
-    font-size: 1.34rem;
+    font-size: 1.32rem;
   }
   .lead-story-title {
     font-size: 1.22rem;
