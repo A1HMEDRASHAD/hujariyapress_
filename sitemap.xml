@@ -11,28 +11,21 @@
     <priority>1.0</priority>
   </url>
 
-  <!-- 2. لوحة أسعار الصرف في اليمن (صنعاء وعدن) لحظة بلحظة -->
-  <url>
-    <loc>https://www.hujariyapress.rawi-ye.com/?page=exchange-rates</loc>
-    <changefreq>hourly</changefreq>
-    <priority>0.95</priority>
-  </url>
-
-  <!-- 3. صفحة الأخبار السريعة والعاجلة (النبض) -->
+  <!-- 2. صفحة الأخبار السريعة والعاجلة (النبض) -->
   <url>
     <loc>https://www.hujariyapress.rawi-ye.com/?compass=pulse-only</loc>
     <changefreq>hourly</changefreq>
     <priority>0.90</priority>
   </url>
 
-  <!-- 4. صفحة الفيديوهات القصيرة والمرئيات -->
+  <!-- 3. صفحة الفيديوهات القصيرة والمرئيات -->
   <url>
     <loc>https://www.hujariyapress.rawi-ye.com/?compass=shorts-only</loc>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
   </url>
 
-  <!-- 5. الأقسام الإخبارية والتحليلية الرئيسية -->
+  <!-- 4. الأقسام الإخبارية والتحليلية الرئيسية -->
   <url>
     <loc>https://www.hujariyapress.rawi-ye.com/?compass=yemen-politics</loc>
     <changefreq>hourly</changefreq>
@@ -87,7 +80,7 @@
     <priority>0.80</priority>
   </url>
 
-  <!-- 6. الصفحات المؤسسية الثابتة -->
+  <!-- 5. الصفحات المؤسسية الثابتة -->
   <url>
     <loc>https://www.hujariyapress.rawi-ye.com/?page=about</loc>
     <changefreq>monthly</changefreq>
