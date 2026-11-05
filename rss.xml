@@ -1,0 +1,203 @@
+name: Auto Update Nabd RSS Feed
+
+on:
+  # يعمل تلقائياً كل 30 دقيقة لسحب أي خبر جديد من Firebase
+  schedule:
+    - cron: "*/30 * * * *"
+  # ويعمل فوراً عند الضغط اليدوي أو عند أي تحديث في المستودع
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - master
+
+permissions:
+  contents: write
+
+jobs:
+  build-rss:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Fetch Firebase Posts & Generate rss.xml
+         env:
+          FIREBASE_PROJECT_ID: "rawi-01"
+          REPO_OWNER: ${{ github.repository_owner }}
+          REPO_NAME: ${{ github.event.repository.name }}
+        run: |
+          node << 'EOF'
+          const fs = require("fs");
+          const path = require("path");
+
+          const PROJECT_ID = process.env.FIREBASE_PROJECT_ID || "rawi-01";
+          const BASE_API = `https://firestore.googleapis.com/v1/projects/${PROJECT_ID}/databases/(default)/documents`;
+
+          // تحديد رابط الموقع تلقائياً (يقرأ ملف CNAME إن وُجد أو يستخدم رابط GitHub Pages)
+          function detectSiteUrl() {
+            try {
+              if (fs.existsSync("CNAME")) {
+                const cname = fs.readFileSync("CNAME", "utf8").trim().split(/\s+/)[0];
+                if (cname) return `https://${cname.replace(/^https?:\/\//, "")}`;
+              }
+            } catch (_) {}
+            const owner = process.env.REPO_OWNER || "a1hmedrashad";
+            const repo = process.env.REPO_NAME || "";
+            if (repo.toLowerCase() === `${owner.toLowerCase()}.github.io`) {
+              return `https://${owner}.github.io`;
+            }
+            return `https://${owner}.github.io/${repo}`;
+          }
+
+          function escapeXml(str = "") {
+            return String(str)
+              .replace(/&/g, "&amp;")
+              .replace(/</g, "&lt;")
+              .replace(/>/g, "&gt;")
+              .replace(/"/g, "&quot;")
+              .replace(/'/g, "&apos;");
+          }
+
+          function extractField(fields, key) {
+            if (!fields || !fields[key]) return "";
+            const f = fields[key];
+            if (f.stringValue !== undefined) return f.stringValue;
+            if (f.integerValue !== undefined) return Number(f.integerValue);
+            if (f.doubleValue !== undefined) return Number(f.doubleValue);
+            if (f.booleanValue !== undefined) return Boolean(f.booleanValue);
+            if (f.timestampValue !== undefined) return new Date(f.timestampValue).getTime();
+            if (f.arrayValue && Array.isArray(f.arrayValue.values)) {
+              return f.arrayValue.values.map((v) => v.stringValue || "").filter(Boolean);
+            }
+            return "";
+          }
+
+          async function generateRss() {
+            const siteUrl = detectSiteUrl().replace(/\/+$/, "");
+
+            // 1. جلب إعدادات الاسم والوصف من Firebase
+            let siteName = "حُجرية بريس — Hujariya Press";
+            let siteDesc = "منصة إخبارية وتحليلية شاملة تندرج تحت مظلة مؤسسة RAWI-YE.COM الإعلامية الرقمية.";
+            try {
+              const setRes = await fetch(`${BASE_API}/settings/general`);
+              if (setRes.ok) {
+                const setJson = await setRes.json();
+                const sName = extractField(setJson.fields, "siteName");
+                const sDesc = extractField(setJson.fields, "siteDescription");
+                if (sName) siteName = sName;
+                if (sDesc) siteDesc = sDesc;
+              }
+            } catch (_) {}
+
+            // 2. جلب الأخبار من مجموعة posts
+            const postsRes = await fetch(`${BASE_API}/posts?pageSize=100`);
+            if (!postsRes.ok) {
+              throw new Error(`Failed to fetch posts: ${postsRes.status}`);
+            }
+            const postsJson = await postsRes.json();
+            const rawDocs = Array.isArray(postsJson.documents) ? postsJson.documents : [];
+
+            const publishedPosts = rawDocs
+              .map((doc) => {
+                const id = doc.name.split("/").pop();
+                const f = doc.fields || {};
+                const createdAt =
+                  extractField(f, "createdAt") ||
+                  (doc.createTime ? new Date(doc.createTime).getTime() : Date.now());
+                const categories = extractField(f, "categories");
+                const primaryCat =
+                  (Array.isArray(categories) && categories[0]) ||
+                  extractField(f, "category") ||
+                  "أخبار";
+
+                return {
+                  id,
+                  title: extractField(f, "title") || "بدون عنوان",
+                  summary: extractField(f, "summary") || "",
+                  content: extractField(f, "content") || "",
+                  author: extractField(f, "author") || "هيئة التحرير",
+                  category: primaryCat,
+                  imageUrl: extractField(f, "imageUrl") || "",
+                  status: extractField(f, "status") || "published",
+                  createdAt: Number(createdAt) || Date.now()
+                };
+              })
+              // استبعاد المسودات والمراجعات وطلبات الحذف (المنشور فقط يذهب لنبض)
+              .filter((p) => !p.status || p.status === "published")
+              .sort((a, b) => b.createdAt - a.createdAt)
+              .slice(0, 40);
+
+            const nowRfc = new Date().toUTCString();
+
+            const itemsXml = publishedPosts
+              .map((post) => {
+                const postLink = `${siteUrl}/?post=${encodeURIComponent(post.id)}`;
+                const pubDate = new Date(post.createdAt).toUTCString();
+                const hasValidRemoteImg =
+                  typeof post.imageUrl === "string" && /^https?:\/\//i.test(post.imageUrl);
+
+                const mediaTags = hasValidRemoteImg
+                  ? `
+      <enclosure url="${escapeXml(post.imageUrl)}" length="0" type="image/jpeg" />
+      <media:content url="${escapeXml(post.imageUrl)}" medium="image" />`
+                  : "";
+
+                const fullHtmlContent = `
+                  ${hasValidRemoteImg ? `<p><img src="${escapeXml(post.imageUrl)}" alt="${escapeXml(post.title)}" /></p>` : ""}
+                  ${post.content || `<p>${escapeXml(post.summary)}</p>`}
+                `.trim();
+
+                return `    <item>
+      <title>${escapeXml(post.title)}</title>
+      <link>${escapeXml(postLink)}</link>
+      <guid isPermaLink="false">${escapeXml(post.id)}</guid>
+      <pubDate>${pubDate}</pubDate>
+      <dc:creator><![CDATA[${post.author}]]></dc:creator>
+      <category><![CDATA[${post.category}]]></category>${mediaTags}
+      <description><![CDATA[${post.summary || post.title}]]></description>
+      <content:encoded><![CDATA[${fullHtmlContent}]]></content:encoded>
+    </item>`;
+              })
+              .join("\n");
+
+            const rssContent = `<?xml version="1.0" encoding="UTF-8"?>
+          <rss version="2.0"
+            xmlns:content="http://purl.org/rss/1.0/modules/content/"
+            xmlns:dc="http://purl.org/dc/elements/1.1/"
+            xmlns:media="http://search.yahoo.com/mrss/"
+            xmlns:atom="http://www.w3.org/2005/Atom">
+            <channel>
+              <title>${escapeXml(siteName)}</title>
+              <link>${escapeXml(siteUrl)}</link>
+              <atom:link href="${escapeXml(siteUrl)}/rss.xml" rel="self" type="application/rss+xml" />
+              <description>${escapeXml(siteDesc)}</description>
+              <language>ar</language>
+              <lastBuildDate>${nowRfc}</lastBuildDate>
+              <generator>Hujariya Press Automated RSS Engine</generator>
+          ${itemsXml}
+            </channel>
+          </rss>
+          `;
+
+            fs.writeFileSync(path.join(process.cwd(), "rss.xml"), rssContent.trim() + "\n", "utf8");
+            console.log(`Successfully generated rss.xml with ${publishedPosts.length} published articles.`);
+          }
+
+          generateRss().catch((err) => {
+            console.error(err);
+            process.exit(1);
+          });
+          EOF
+
+      - name: Commit and Push Updated rss.xml
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add rss.xml
+          if git diff --staged --quiet; then
+            echo "No changes in rss.xml"
+          else
+            git commit -m "chore(rss): auto-update rss.xml from Firebase posts"
+            git push
+          fi
